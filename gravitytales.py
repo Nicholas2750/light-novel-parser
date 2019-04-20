@@ -21,6 +21,8 @@ def get_chapter(HTML):
     for div in HTML.findAll('div', attrs = {'class': 'innerContent fr-view', 'id': 'chapterContent'}):
         chapter = div
 
+    print('Parsed: ' + url)
+
     return str(chapter)
 
 
@@ -38,9 +40,9 @@ def get_next_url(HTML, url):
 
 
 url = input("Enter the URL of the first chapter to parse: ")
-delay = int(input("Enter the delay time between each parsing: "))
+delay = float(input("Enter the delay time between each parsing: "))
+filename = input("Enter the name for the parsed file: ")
 parsed = ''
-count = 1
 
 while url != None:
     time.sleep(delay)
@@ -51,13 +53,13 @@ while url != None:
 
     url = next_url
 
-    print(str(count) + ' chapters parsed')
-    count += 1
-
 parsed = '<html><body>' + parsed + '</body></html>'
 
-f = open('gravitytales_result.html','w')
+f = open('./parsing_result/' + filename + '.html','w')
 f.write(parsed)
 f.close()
 
-print("Parsing done")
+print('Parsing done')
+print('(•_•)')
+print('( •_•)>⌐■-■')
+print('(⌐■_■)')

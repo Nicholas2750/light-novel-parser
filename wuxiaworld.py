@@ -27,6 +27,8 @@ def get_chapter(HTML):
 
     chapter = str(chapter).replace('Previous Chapter', '').replace('Next Chapter', '')
 
+    print('Parsed: ' + title)
+
     return '<h4>' + title + chapter + '</h4>' + '<br>'
 
 
@@ -42,10 +44,10 @@ def get_next_url(HTML):
 
 
 url = input("Enter the URL of the first chapter to parse: ")
-delay = int(input("Enter the delay time between each parsing: "))
+delay = float(input("Enter the delay time between each parsing: "))
+filename = input("Enter the name for the parsed file: ")
 parsed = ''
 prev_url = ''
-count = 1
 
 while True:
     try:
@@ -61,17 +63,17 @@ while True:
         prev_url = url
         url = next_url
 
-        print(str(count) + ' chapters parsed')
-        count += 1
-
     except:
         break
 
 
 parsed = '<html><body>' + parsed + '</body></html>'
 
-f = open('wuxiaworld_result.html','w')
+f = open('./parsing_result/' + filename + '.html','w')
 f.write(parsed)
 f.close()
 
-print("Parsing done")
+print('Parsing done')
+print('(•_•)')
+print('( •_•)>⌐■-■')
+print('(⌐■_■)')
